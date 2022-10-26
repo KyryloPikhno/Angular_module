@@ -20,5 +20,4 @@ export class UserService {
     return this.httpClient.get<IUser[]>(urls.users)
   }
 
-  getById
 }
