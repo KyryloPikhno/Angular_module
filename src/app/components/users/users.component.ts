@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
 
-import {IUser} from "../../Interfaces";  
+import {UserService} from "../../services";
+import {IUser} from "../../Interfaces";
 
 
 @Component({
@@ -12,11 +12,12 @@ import {IUser} from "../../Interfaces";
 export class UsersComponent implements OnInit {
   users: IUser[];
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private userService: UserService) {
 
   }
 
   ngOnInit(): void {
+    this.userService.getAll().subscribe(value => this.users = value)
   }
 
   getAllUsers(): void{
