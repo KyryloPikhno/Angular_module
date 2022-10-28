@@ -1,10 +1,36 @@
+import {RouterModule, Routes} from "@angular/router";
+import {HttpClientModule} from "@angular/common/http";
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { CommentComponent, CommentsComponent, PostsComponent, PostComponent, UserComponent, UsersComponent} from './components';
-import {HttpClientModule} from "@angular/common/http";
+import {
+  CommentComponent,
+  HeaderComponent,
+  CommentsComponent,
+  PostsComponent,
+  PostComponent,
+  UserComponent,
+  UsersComponent,
+  UserDetailsComponent
+} from './components';
 import { AppComponent } from './app.component';
+import { MainLayautComponent } from './layouts';
 
+
+const routes:Routes = [
+  {
+    path: '', component:MainLayautComponent, children:[
+        {path:'', redirectTo:'users', pathMatch:'full'},
+        {
+          path: 'users', component:UsersComponent, children:[
+            {path: ':id', component:UserDetailsComponent}
+          ]
+        },
+        {path: 'posts', component:PostsComponent},
+        {path: 'comments', component:CommentsComponent}
+    ]
+  },
+]
 
 @NgModule({
   declarations: [
@@ -14,11 +40,15 @@ import { AppComponent } from './app.component';
     PostsComponent,
     PostComponent,
     CommentsComponent,
-    CommentComponent
+    CommentComponent,
+    HeaderComponent,
+    MainLayautComponent,
+    UserDetailsComponent
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]
