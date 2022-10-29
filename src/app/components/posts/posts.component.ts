@@ -12,6 +12,8 @@ import {IPost} from "../../Interfaces";
 export class PostsComponent implements OnInit {
   posts: IPost[];
 
+  selectedPost: IPost
+
   constructor(private postService: PostService) {
 
   }
@@ -20,7 +22,8 @@ export class PostsComponent implements OnInit {
     this.postService.getAll().subscribe(value => this.posts = value)
   }
 
-  getAllPosts(): void{
+  getPost(post: IPost) {
+    this.selectedPost = post
   }
 
 }
