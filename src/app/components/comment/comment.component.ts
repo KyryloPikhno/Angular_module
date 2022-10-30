@@ -1,4 +1,4 @@
-import { Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, EventEmitter, Output} from '@angular/core';
 
 import {IComment} from  '../../Interfaces'
 
@@ -10,11 +10,17 @@ import {IComment} from  '../../Interfaces'
 })
 export class CommentComponent implements OnInit {
   @Input()
-  comment:IComment
+  comment: IComment
+
+  @Output()
+  liftComment = new EventEmitter<IComment>()
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  lift(): void{
+    this.liftComment.emit(this.comment)
+  }
 }

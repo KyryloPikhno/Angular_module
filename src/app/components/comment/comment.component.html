@@ -1,4 +1,5 @@
 <div class="container">
-  {{comment.id}}.) {{comment.email}} - {{comment.name}} {{comment.body}}
+  <a routerLink="{{comment.id}}" [state]="{comment}">{{comment.id}}.) {{comment.email}} - {{comment.name}} {{comment.body}}</a>
+  <button (click)="lift()">Lift</button>
 </div>
 

@@ -1,5 +1,5 @@
 <div class="container">
-  {{post.id}}.) {{post.title}} - {{post.body}}
+  <a routerLink="{{post.id}}" [state]="{post}">{{post.id}}.) {{post.title}} - {{post.body}}</a>
   <button (click)="lift()">lift</button>
 </div>
 

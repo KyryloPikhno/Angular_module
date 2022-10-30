@@ -23,5 +23,4 @@ export class PostComponent implements OnInit {
   lift(): void{
     this.liftPost.emit(this.post)
   }
-
 }

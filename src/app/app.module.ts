@@ -16,6 +16,7 @@ import {
 } from './components';
 import { AppComponent } from './app.component';
 import { MainLayautComponent } from './layouts';
+import { CommentDetailsComponent } from './components/comment-details/comment-details.component';
 
 
 const routes:Routes = [
@@ -29,10 +30,14 @@ const routes:Routes = [
         },
         {
           path: 'posts', component:PostsComponent , children:[
-            {path: ':id', component: PostDetailsComponent}
+            {path: ':id', component:PostDetailsComponent}
           ]
         },
-        {path: 'comments', component:CommentsComponent}
+        {
+          path: 'comments', component:CommentsComponent, children:[
+            {path: ':id', component: CommentDetailsComponent}
+          ]
+        }
     ]
   },
 ]
@@ -49,7 +54,8 @@ const routes:Routes = [
     HeaderComponent,
     MainLayautComponent,
     UserDetailsComponent,
-    PostDetailsComponent
+    PostDetailsComponent,
+    CommentDetailsComponent
   ],
   imports: [
     BrowserModule,

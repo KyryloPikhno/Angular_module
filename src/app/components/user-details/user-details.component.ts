@@ -20,7 +20,6 @@ export class UserDetailsComponent implements OnInit {
        if(!this.user){
           this.userService.getById(id).subscribe(value => this.user = value)
        }
-
     })
   }
 

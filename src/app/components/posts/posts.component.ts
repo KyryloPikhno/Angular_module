@@ -25,5 +25,4 @@ export class PostsComponent implements OnInit {
   getPost(post: IPost) {
     this.selectedPost = post
   }
-
 }
