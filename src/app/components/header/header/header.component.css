@@ -1,0 +1,16 @@
+.header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 50px;
+  background: black;
+}
+
+.header a {
+  text-decoration: none;
+  color: white;
+}
+
+.header a.active{
+  color: orange;
+}
