@@ -13,6 +13,7 @@ import {ICar} from "../../interfaces";
 export class CarsComponent implements OnInit {
   cars:ICar[]
   form:FormGroup
+  updateCar:ICar|null
 
   constructor(private carService:CarService) {
     this._initForm()
@@ -31,7 +32,35 @@ export class CarsComponent implements OnInit {
   }
 
   save():void{
-    console.log(this.form);
+    // console.log(this.form);
+    if(!this.updateCar){
+        this.carService.create(this.form.value).subscribe(value => {
+        this.cars.push(value)
+      })
+    }else {
+        this.carService.updateById(this.updateCar.id, this.form.value).subscribe(value => {
+        const car = this.cars.find(car => car.id === this.updateCar?.id)
+        Object.assign(car!, value)
+        this.updateCar = null
+      })
+    }
+    this.form.reset()
+  }
+
+  lift(car: ICar) {
+    this.updateCar = car
+    this.form.setValue({
+      model:car.model,
+      price:car.price,
+      year:car.year
+    })
+  }
+
+  deleteById(id: number) {
+    this.carService.delateById(id).subscribe(() =>{
+      const index = this.cars.findIndex(car => car.id === id)
+      this.cars.splice(index,1)
+    })
   }
 }
 

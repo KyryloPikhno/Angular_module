@@ -1,11 +1,28 @@
-<form [formGroup]="form">
-  <input type="text" placeholder="model" formControlName="model">
-  <input type="text" placeholder="price" formControlName="price">
-  <input type="text" placeholder="year" formControlName="year">
-    <button [disabled]="form.invalid" (click)="save()">save</button>
+<form [formGroup]="form" class="forms">
+
+  <mat-form-field  appearance="outline">
+    <mat-label>model</mat-label>
+    <input matInput type="text"  formControlName="model">
+  </mat-form-field>
+
+  <mat-form-field  appearance="outline">
+    <mat-label>price</mat-label>
+    <input matInput type="text" placeholder="price" formControlName="price">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>year</mat-label>
+    <input matInput type="text" placeholder="year" formControlName="year">
+  </mat-form-field>
+
+  <span *ngIf="form.controls['year']['errors']">year errors</span>
+  <span *ngIf="form.controls['price']['errors']">price errors</span>
+  <span *ngIf="form.controls['model']['errors']">model errors</span>
+
+  <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="save()">{{updateCar? 'update':'save'}}</button>
 </form>
-<hr>
+  <hr>
 <div class="container">
-    <app-car *ngFor="let car of cars" [car]="car"></app-car>
+  <app-car *ngFor="let car of cars" [car]="car" (carForUpdate)="lift($event)" (carIdForDelete)="deleteById($event)"></app-car>
 </div>
 
