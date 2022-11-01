@@ -2,8 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { CommentRoutingModule } from './comment-routing.module';
-import { UserComponent } from './components/user/user.component';
-import { UsersComponent } from './components/users/users.component';
 import { CommentComponent } from './components/comment/comment.component';
 import { CommentsComponent } from './components/comments/comments.component';
 import { CommentDetailsComponent } from './components/comment-details/comment-details.component';
@@ -11,8 +9,6 @@ import { CommentDetailsComponent } from './components/comment-details/comment-de
 
 @NgModule({
   declarations: [
-    UserComponent,
-    UsersComponent,
     CommentComponent,
     CommentsComponent,
     CommentDetailsComponent

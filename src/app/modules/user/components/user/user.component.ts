@@ -21,5 +21,4 @@ export class UserComponent implements OnInit {
   getDetails():void{
     this.router.navigate([this.user.id], {relativeTo: this.activatedRoute})
   }
-
 }
