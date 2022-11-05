@@ -40,3 +40,9 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+# System files
+.DS_Store
+Thumbs.db
+.vscode
+yarn.lock

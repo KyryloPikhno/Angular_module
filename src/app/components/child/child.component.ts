@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./child.component.css']
 })
 export class ChildComponent implements OnInit {
-
+  name='max'
   constructor() { }
 
   ngOnInit(): void {
   }
-
+  sayHello():void{
+    console.log('hello');
+  }
 }
