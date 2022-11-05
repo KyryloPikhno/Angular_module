@@ -16,50 +16,52 @@ import {ITokens} from "./interfaces";
 export class MainInterceptor implements HttpInterceptor {
   isRefreshing = false;
 
-  constructor(private authService:AuthService, private dialog :MatDialog, private router: Router) {}
+  constructor(private authService: AuthService, private dialog: MatDialog, private router: Router) {
+  }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<any> {
     const isAuthenticated = this.authService.isAuthenticated()
 
-        if(isAuthenticated){
-          request = this.addToken(request, this.authService.getAccessToken())
-        }
+    if (isAuthenticated) {
+      request = this.addToken(request, this.authService.getAccessToken())
+    }
 
     return next.handle(request).pipe(
       catchError((res: HttpErrorResponse) => {
-          if(res && res.error && res.status === 401) {
-              return this.handle401Error(request, next)
-          }
+        if (res && res.error && res.status === 401) {
+          return this.handle401Error(request, next)
+        }
 
-          return  throwError(()=>res)
+        return throwError(() => res)
       })
     );
   }
 
-  addToken(request: HttpRequest<any>, token: string):HttpRequest<any> {
+  addToken(request: HttpRequest<any>, token: string): HttpRequest<any> {
     return request.clone({
-      setHeaders:{Authorization:`Bearer ${token}`}
+      setHeaders: {Authorization: `Bearer ${token}`}
     })
   }
 
-  handle401Error(request: HttpRequest<any>, next: HttpHandler):any{
-   const refresh = this.authService.getRefreshToken()
+  handle401Error(request: HttpRequest<any>, next: HttpHandler): any {
+    const refresh = this.authService.getRefreshToken()
 
-    if(refresh && !this.isRefreshing){
+    if (refresh && !this.isRefreshing) {
       this.isRefreshing = true
       return this.authService.refresh(refresh).pipe(
-        switchMap((token:ITokens)=>{
+        switchMap((token: ITokens) => {
           this.isRefreshing = false
           return next.handle(this.addToken(request, token.access))
         }),
-        catchError(()=>{
+        catchError(() => {
           this.isRefreshing = false
           this.authService.deleteTokens()
           this.dialog.closeAll()
           this.router.navigate(['/login'])
-          return throwError(()=> new Error('token inValid'))
+          return throwError(() => new Error('token inValid'))
         })
       )
     }
   }
 }
+

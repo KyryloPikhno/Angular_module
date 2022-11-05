@@ -10,11 +10,11 @@ import {CarsComponent} from "./components/cars/cars.component";
 
 const routes: Routes = [
   {
-    path:'', component: MainLayoutComponent, children:[
-      {path:'', redirectTo:'login', pathMatch:'full'},
-      {path:'login', component:LoginComponent},
-      {path:'register', component:RegisterComponent},
-      {path:'cars', component:CarsComponent}
+    path: '', component: MainLayoutComponent, children: [
+      {path: '', redirectTo: 'login', pathMatch: 'full'},
+      {path: 'login', component: LoginComponent},
+      {path: 'register', component: RegisterComponent},
+      {path: 'cars', component: CarsComponent}
     ]
   }
 ];
