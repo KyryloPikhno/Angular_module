@@ -2,7 +2,7 @@
   <app-car *ngFor="let car of cars" [car]="car"></app-car>
 </mat-accordion>
 <mat-paginator
-  [length]="100"
+  [length]="total_items"
   [pageSize]="10"
 aria-label="Select page">
 </mat-paginator>

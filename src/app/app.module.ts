@@ -24,6 +24,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {MainInterceptor} from "./main.interceptor";
 import {MatExpansionModule} from "@angular/material/expansion";
 import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatProgressBarModule} from "@angular/material/progress-bar";
 
 @NgModule({
   declarations: [
@@ -37,22 +38,23 @@ import {MatPaginatorModule} from "@angular/material/paginator";
     RegisterComponent,
     HeaderComponent
   ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    RouterModule,
-    HttpClientModule,
-    MatToolbarModule,
-    MatDialogModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatCardModule,
-    MatButtonModule,
-    MatExpansionModule,
-    MatPaginatorModule
-  ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        RouterModule,
+        HttpClientModule,
+        MatToolbarModule,
+        MatDialogModule,
+        AppRoutingModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatCardModule,
+        MatButtonModule,
+        MatExpansionModule,
+        MatPaginatorModule,
+        MatProgressBarModule
+    ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
